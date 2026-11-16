@@ -20,7 +20,7 @@ $url = "http://127.0.0.1:$port/"
 Write-Host "Forest Clan is ready at $url" -ForegroundColor Green
 Write-Host 'Keep this window open while playing. Close it to stop the local server.'
 if (-not $NoBrowser) { Start-Process $url }
-$mime = @{ '.html'='text/html; charset=utf-8'; '.js'='application/javascript'; '.wasm'='application/wasm'; '.pck'='application/octet-stream'; '.png'='image/png'; '.svg'='image/svg+xml'; '.json'='application/json' }
+$mime = @{ '.html'='text/html; charset=utf-8'; '.js'='application/javascript'; '.wasm'='application/wasm'; '.pck'='application/octet-stream'; '.png'='image/png'; '.svg'='image/svg+xml'; '.json'='application/json'; '.webmanifest'='application/manifest+json' }
 try {
     while ($true) {
         $client = $listener.AcceptTcpClient()
