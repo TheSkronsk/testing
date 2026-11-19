@@ -7,9 +7,9 @@
     style.textContent = `
         #forest-fullscreen {
             position: fixed; z-index: 10;
-            right: max(12px, env(safe-area-inset-right));
-            bottom: max(12px, env(safe-area-inset-bottom));
-            min-height: 44px; padding: 10px 14px;
+            left: max(var(--forest-control-left, 118px), env(safe-area-inset-left));
+            bottom: max(var(--forest-control-bottom, 12px), env(safe-area-inset-bottom));
+            width: 44px; min-height: 44px; padding: 0;
             border: 1px solid #b9bd95; border-radius: 12px;
             background: #354a38; color: #faf0d7;
             font: 600 14px system-ui, sans-serif;
@@ -61,8 +61,7 @@
         if offered, then launch Forest Clan from the new icon.</p>
         <p>On other phones, try opening the game directly in Chrome or Safari
         instead of an in-app browser. Rotate your phone to landscape for the best view.</p>
-        <p>The home-screen version needs an internet connection. Refreshing or
-        relaunching starts a new game, just like the browser version.</p>
+        <p>The home-screen version needs an internet connection. Use Continue after reopening the game to load your latest save.</p>
         <form method="dialog"><button type="submit">Back to game</button></form>
     `;
     document.body.append(help);
@@ -77,7 +76,8 @@
     function sync() {
         const active = Boolean(fullscreenElement());
         button.hidden = standalone() && !active;
-        button.textContent = active ? 'Exit fullscreen' : 'Fullscreen';
+        button.textContent = active ? '↙' : '⛶';
+        button.title = active ? 'Exit fullscreen' : 'Play fullscreen';
         button.setAttribute('aria-label', active ? 'Exit fullscreen' : 'Play fullscreen');
         button.setAttribute('aria-pressed', String(active));
         window.dispatchEvent(new Event('forest-controls-changed'));
