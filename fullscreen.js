@@ -80,6 +80,7 @@
         button.textContent = active ? 'Exit fullscreen' : 'Fullscreen';
         button.setAttribute('aria-label', active ? 'Exit fullscreen' : 'Play fullscreen');
         button.setAttribute('aria-pressed', String(active));
+        window.dispatchEvent(new Event('forest-controls-changed'));
     }
 
     function showHelp(reason) {
